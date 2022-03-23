@@ -1,19 +1,7 @@
 import React from 'react';
-import { unified } from 'unified';
-import markdown from 'remark-parse';
-import remark2rehype from 'remark-rehype';
-import html from 'rehype-stringify';
+import mdToHtml from '../scripts/mdToHtml';
 
 function MdText() {
-  const mdToHtml = (mdText) => {
-    const htmlText = unified()
-      .use(markdown)
-      .use(remark2rehype)
-      .use(html)
-      .processSync(mdText);
-
-    return htmlText;
-  };
   return (
     <main
       className="container-fluid"
@@ -25,6 +13,7 @@ function MdText() {
           <textarea
             className="form-control h-100"
             style={{ resize: 'none' }}
+            id="tArea"
             onChange={(event) => {
               document.getElementById('mdDisplay').innerHTML = mdToHtml(
                 event.target.value
