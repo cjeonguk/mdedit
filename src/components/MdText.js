@@ -8,7 +8,6 @@ function MdText() {
       style={{ height: '90%', padding: '12px' }}
     >
       <div className="row h-100">
-        <div className="col-6 h-100" id="mdDisplay"></div>
         <div className="col-6 h-100 form-floating">
           <textarea
             className="form-control h-100"
@@ -21,6 +20,7 @@ function MdText() {
             }}
           ></textarea>
         </div>
+        <div className="col-6 h-100" id="mdDisplay"></div>
       </div>
     </main>
   );

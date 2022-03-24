@@ -1,12 +1,17 @@
-const { app, BrowserWindow, Menu /*, dialog*/ } = require('electron');
+const { app, BrowserWindow, Menu, dialog } = require('electron');
 const path = require('path');
 
+let savePath;
+
 const createWindow = () => {
-  const window = new BrowserWindow({
+  const mainWindow = new BrowserWindow({
     width: 1260,
     height: 720,
     minWidth: 720,
     minHeight: 480,
+    webPreferences: {
+      preload: path.join(__dirname, 'preload.js'),
+    },
   });
 
   const isMac = process.platform === 'darwin';
@@ -29,13 +34,36 @@ const createWindow = () => {
           },
         ]
       : []),
+    {
+      label: '파일',
+      submenu: [
+        {
+          label: '열기',
+        },
+        { type: 'separator' },
+        {
+          label: '저장',
+        },
+        {
+          label: '다른 이름으로 저장',
+          click: () => {
+            const filters = [
+              { name: 'Markdown', extensions: ['md'] },
+              { name: 'Markdown Zip', extensions: ['mdx'] },
+            ];
+            savePath = dialog.showSaveDialogSync({ filters: filters });
+            mainWindow.webContents.send('saveAsPath', savePath);
+          },
+        },
+      ],
+    },
   ];
   const menu = Menu.buildFromTemplate(menuTemplate);
   Menu.setApplicationMenu(menu);
 
-  window.loadFile(path.join(__dirname, 'index.html'));
+  mainWindow.loadFile(path.join(__dirname, 'index.html'));
 
-  window.webContents.openDevTools();
+  mainWindow.webContents.openDevTools();
 };
 
 app.whenReady().then(() => {
