@@ -14,3 +14,20 @@ blockquote {
   padding-right: 20px;
   border-left: 10px solid skyblue;
 }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  border-bottom: 1px solid lightgray;
+}
+
+img {
+  width: 100%;
+}
+
+#mdDisplay {
+  pointer-events: none;
+}
