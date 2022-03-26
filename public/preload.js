@@ -8,12 +8,12 @@ ipcRenderer.on('saveFile', (event, [filePath, images]) => {
     const filePathSplit = filePath.split('/');
     const fileName = filePathSplit[filePathSplit.length - 1].slice(0, -4);
     const zip = new JSZip();
-    // const photoZip = zip.folder('photos');
+    const photoZip = zip.folder('photos');
     for (let i in images) {
       const imageSplit = images[i].split('/');
       const image = imageSplit[imageSplit.length - 1];
-      zip.file(image, fs.readFileSync(images[i]));
-      contents = contents.replace(images[i], image);
+      photoZip.file(image, fs.readFileSync(images[i]));
+      contents = contents.replace(images[i], `photos/${image}`);
     }
     zip.file(`${fileName}.md`, contents);
     document.getElementById('tArea').value = contents;
