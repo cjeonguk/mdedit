@@ -102,7 +102,7 @@ const Nav = () => {
             const imgPath = window.ipcRenderer.openImage();
             for (let i in imgPath) {
               if (imgPath[i] !== '') {
-                const content = `\n![image](${imgPath[i]})`;
+                const content = `\n![image](${imgPath[i]})\n`;
                 btnClick(content);
               }
             }

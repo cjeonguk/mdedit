@@ -17,6 +17,9 @@ ipcRenderer.on('openFile', (event, filePath) => {
 contextBridge.exposeInMainWorld('ipcRenderer', {
   openImage: () => {
     const imgPath = ipcRenderer.sendSync('openImage');
+    for (let i in imgPath) {
+      imgPath[i] = imgPath[i].replaceAll('\\', '/');
+    }
     return imgPath;
   },
 });

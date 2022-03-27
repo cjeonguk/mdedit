@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "main": "build/main.js",
   "homepage": ".",
-  "module": "node",
+  "author": "최정욱",
+  "description": "WYSIWYG markdown editor",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.2",
