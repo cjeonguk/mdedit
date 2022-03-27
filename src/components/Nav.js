@@ -18,13 +18,13 @@ const btnClick = (content) => {
 
 const Nav = () => {
   const btns = [
-    { id: 'catalogBtn', text: '목록', content: '\n* 목록\n' },
+    { id: 'catalogBtn', text: '목록', content: '\n* 목록' },
     { id: 'boldBtn', text: '볼드체', content: '**텍스트**' },
     { id: 'italicBtn', text: '이탤릭체', content: '*텍스트*' },
     { id: 'codeBtn', text: '코드', content: '`code`' },
-    { id: 'longCodeBtn', text: '여러 줄 코드', content: '\n```\ncode\n```\n' },
+    { id: 'longCodeBtn', text: '여러 줄 코드', content: '\n```\ncode\n```' },
     { id: 'quotationBtn', text: '인용문', content: '\n>' },
-    { id: 'linkBtn', text: '링크', content: '\n[link](link_address)\n' },
+    { id: 'linkBtn', text: '링크', content: '\n[link](link_address)' },
     { id: 'separatorBtn', text: '가로줄', content: '\n***\n' },
   ];
   const btnList = [];
@@ -61,7 +61,7 @@ const Nav = () => {
           }}
           onClick={() => {
             const titleLevel = document.getElementById('titleLevel').value;
-            const content = '\n' + '#'.repeat(titleLevel) + ' 제목\n';
+            const content = '\n' + '#'.repeat(titleLevel) + ' 제목';
             btnClick(content);
             document.getElementById('mdDisplay').innerHTML = mdToHtml(
               document.getElementById('tArea')
@@ -102,7 +102,7 @@ const Nav = () => {
             const imgPath = window.ipcRenderer.openImage();
             for (let i in imgPath) {
               if (imgPath[i] !== '') {
-                const content = `\n![image](${imgPath[i]})\n`;
+                const content = `\n![image](${imgPath[i]})`;
                 btnClick(content);
               }
             }

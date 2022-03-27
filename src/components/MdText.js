@@ -20,7 +20,11 @@ const MdText = () => {
             }}
           ></textarea>
         </div>
-        <div className="col-6 h-100" id="mdDisplay"></div>
+        <div
+          className="col-6"
+          id="mdDisplay"
+          style={{ overflowY: 'auto', height: '100%' }}
+        ></div>
       </div>
     </main>
   );

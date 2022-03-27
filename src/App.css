@@ -29,6 +29,8 @@ img {
 }
 
 #mdDisplay {
-  pointer-events: none;
   font-size: 18px;
+}
+#mdDisplay a {
+  pointer-events: none;
 }
