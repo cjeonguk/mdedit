@@ -8,6 +8,7 @@ const createWindow = () => {
     height: 720,
     minWidth: 720,
     minHeight: 600,
+    icon: path.join(__dirname, 'icon.png'),
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
     },
@@ -79,6 +80,23 @@ const createWindow = () => {
               filePath = tmpPath;
               mainWindow.webContents.send('saveFile', filePath);
             }
+          },
+        },
+      ],
+    },
+    {
+      label: '정보',
+      submenu: [
+        {
+          label: '작성자',
+          click: () => {
+            const options = {
+              title: '작성자',
+              message: '작성자: 최정욱',
+              detail: '서운중 20231 최정욱 - 2022-03-27',
+              icon: path.join(__dirname, 'icon.png'),
+            };
+            dialog.showMessageBox(null, options);
           },
         },
       ],

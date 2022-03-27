@@ -24,7 +24,7 @@ const Nav = () => {
     { id: 'codeBtn', text: '코드', content: '`code`' },
     { id: 'longCodeBtn', text: '여러 줄 코드', content: '\n```\ncode\n```\n' },
     { id: 'quotationBtn', text: '인용문', content: '\n>' },
-    { id: 'linkBtn', text: '링크', content: '\n[링크 이름](링크 주소)\n' },
+    { id: 'linkBtn', text: '링크', content: '\n[link](link_address)\n' },
     { id: 'separatorBtn', text: '가로줄', content: '\n***\n' },
   ];
   const btnList = [];
@@ -32,7 +32,7 @@ const Nav = () => {
     const content = btns[i].content;
     btnList.push(
       <button
-        className="btn btn-primary rounded-0"
+        className="btn btn-secondary rounded-0"
         id={btns[i].id}
         style={{
           borderLeft: '1px solid lightgray',
@@ -51,11 +51,11 @@ const Nav = () => {
   }
 
   return (
-    <nav className="bg-primary" style={{ height: '10%' }}>
+    <nav className="bg-secondary" style={{ height: '10%' }}>
       <ul className="btn-group w-100" style={{ padding: '0px', margin: '0px' }}>
         <button
           id="titleBtn"
-          className="btn btn-primary rounded-0"
+          className="btn btn-secondary rounded-0"
           style={{
             borderRight: '1px solid lightgray',
           }}
@@ -70,10 +70,31 @@ const Nav = () => {
         >
           문단 제목
         </button>
+        <button
+          className="btn btn-secondary rounded-0"
+          style={{
+            borderLeft: '1px solid lightgray',
+            borderRight: '1px solid lightgray',
+          }}
+        >
+          <select
+            id="titleLevel"
+            style={{
+              width: '50px',
+            }}
+          >
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+          </select>
+        </button>
         {btnList}
         <button
           id="imgBtn"
-          className="btn btn-primary rounded-0"
+          className="btn btn-secondary rounded-0"
           style={{
             borderLeft: '1px solid lightgray',
           }}
@@ -93,19 +114,6 @@ const Nav = () => {
           이미지
         </button>
       </ul>
-      <div>
-        <select
-          id="titleLevel"
-          style={{ width: '50px', marginTop: '3px', marginLeft: '27px' }}
-        >
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-        </select>
-      </div>
     </nav>
   );
 };
