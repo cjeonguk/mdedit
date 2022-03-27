@@ -93,7 +93,7 @@ const Nav = () => {
           이미지
         </button>
       </ul>
-      <div /*style={{ textAlign: 'center' }}*/>
+      <div>
         <select
           id="titleLevel"
           style={{ width: '50px', marginTop: '3px', marginLeft: '27px' }}

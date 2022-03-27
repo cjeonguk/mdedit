@@ -1,7 +1,7 @@
 import React from 'react';
 import mdToHtml from '../scripts/mdToHtml';
 
-function MdText() {
+const MdText = () => {
   return (
     <main
       className="container-fluid"
@@ -24,6 +24,6 @@ function MdText() {
       </div>
     </main>
   );
-}
+};
 
 export default MdText;
