@@ -79,13 +79,15 @@ const Nav = () => {
           }}
           onClick={() => {
             const imgPath = window.ipcRenderer.openImage();
-            if (imgPath !== '') {
-              const content = `\n![image](${imgPath})`;
-              btnClick(content);
-              document.getElementById('mdDisplay').innerHTML = mdToHtml(
-                document.getElementById('tArea')
-              );
+            for (let i in imgPath) {
+              if (imgPath[i] !== '') {
+                const content = `\n![image](${imgPath[i]})`;
+                btnClick(content);
+              }
             }
+            document.getElementById('mdDisplay').innerHTML = mdToHtml(
+              document.getElementById('tArea')
+            );
           }}
         >
           이미지

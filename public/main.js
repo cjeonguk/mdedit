@@ -2,7 +2,6 @@ const { app, BrowserWindow, Menu, dialog, ipcMain } = require('electron');
 const path = require('path');
 
 let mainWindow;
-const images = [];
 const createWindow = () => {
   mainWindow = new BrowserWindow({
     width: 1260,
@@ -16,8 +15,8 @@ const createWindow = () => {
 
   let filePath;
   const filters = [
-    { name: 'Markdown Zip', extensions: ['mdz'] },
     { name: 'Markdown', extensions: ['md'] },
+    { name: 'All', extensions: ['*'] },
   ];
 
   const isMac = process.platform === 'darwin';
@@ -65,10 +64,10 @@ const createWindow = () => {
               const tmpPath = dialog.showSaveDialogSync({ filters: filters });
               if (typeof tmpPath !== 'undefined') {
                 filePath = tmpPath;
-                mainWindow.webContents.send('saveFile', [filePath, images]);
+                mainWindow.webContents.send('saveFile', filePath);
               }
             } else {
-              mainWindow.webContents.send('saveFile', [filePath, images]);
+              mainWindow.webContents.send('saveFile', filePath);
             }
           },
         },
@@ -78,7 +77,7 @@ const createWindow = () => {
             const tmpPath = dialog.showSaveDialogSync({ filters: filters });
             if (typeof tmpPath !== 'undefined') {
               filePath = tmpPath;
-              mainWindow.webContents.send('saveFile', [filePath, images]);
+              mainWindow.webContents.send('saveFile', filePath);
             }
           },
         },
@@ -116,7 +115,6 @@ ipcMain.on('openImage', (event) => {
     dialog.showErrorBox('Error', '이미지 경로에 공백이 존재해서는 안됩니다!');
     event.returnValue = '';
   } else {
-    images.push(image[0]);
-    event.returnValue = image[0];
+    event.returnValue = image;
   }
 });
