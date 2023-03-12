@@ -84,23 +84,6 @@ const createWindow = () => {
         },
       ],
     },
-    {
-      label: '정보',
-      submenu: [
-        {
-          label: '작성자',
-          click: () => {
-            const options = {
-              title: '작성자',
-              message: '작성자: 최정욱',
-              detail: '서운중 20231 최정욱 - 2022-03-27',
-              icon: path.join(__dirname, 'icon.png'),
-            };
-            dialog.showMessageBox(null, options);
-          },
-        },
-      ],
-    },
   ];
   const menu = Menu.buildFromTemplate(menuTemplate);
   Menu.setApplicationMenu(menu);
