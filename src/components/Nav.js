@@ -20,9 +20,7 @@ const btnClick = (content, changeLine, selectionStart, selectionEnd) => {
     content +
     (changeLine && tArea.value.charAt(startPos) !== '\n' ? '\n' : '') +
     tArea.value.slice(endPos);
-  if (selectionStart !== -1 && selectionEnd !== -1) {
-    tArea.setSelectionRange(startPos + selectionStart, startPos + selectionEnd);
-  }
+  tArea.setSelectionRange(startPos + selectionStart, startPos + selectionEnd);
 };
 
 const Nav = () => {
@@ -89,7 +87,7 @@ const Nav = () => {
       text: <>가로줄</>,
       content: '***',
       changeLine: true,
-      selection: [-1, -1],
+      selection: [4, 4],
     },
   ];
   const btnList = [];
