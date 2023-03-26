@@ -12,15 +12,19 @@ const getMousePos = () => {
 const btnClick = (content, changeLine, selectionStart, selectionEnd) => {
   const tArea = document.getElementById('tArea');
   const [startPos, endPos] = getMousePos();
+  const checkFront =
+    changeLine && tArea.value.charAt(startPos - 1) !== '\n' && startPos !== 0;
+  const checkRear = changeLine && tArea.value.charAt(startPos) !== '\n';
   tArea.value =
     tArea.value.slice(0, startPos) +
-    (changeLine && tArea.value.charAt(startPos - 1) !== '\n' && startPos !== 0
-      ? '\n'
-      : '') +
+    (checkFront ? '\n' : '') +
     content +
-    (changeLine && tArea.value.charAt(startPos) !== '\n' ? '\n' : '') +
+    (checkRear ? '\n' : '') +
     tArea.value.slice(endPos);
-  tArea.setSelectionRange(startPos + selectionStart, startPos + selectionEnd);
+  tArea.setSelectionRange(
+    startPos + selectionStart + (checkFront ? 1 : 0),
+    startPos + selectionEnd + (checkFront ? 1 : 0)
+  );
 };
 
 const Nav = () => {
