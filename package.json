@@ -61,7 +61,11 @@
   },
   "config": {
     "forge": {
-      "packagerConfig": {},
+      "packagerConfig": {
+        "ignore": [
+          "^\\/node_modules$"
+        ]
+      },
       "makers": [
         {
           "name": "@electron-forge/maker-squirrel",
