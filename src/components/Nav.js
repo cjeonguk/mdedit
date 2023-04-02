@@ -32,7 +32,7 @@ const Nav = () => {
     {
       id: 'catalogBtn',
       text: <>목록</>,
-      content: '* 목록',
+      content: '- 목록',
       changeLine: true,
       selection: [2, 4],
     },
@@ -46,7 +46,7 @@ const Nav = () => {
     {
       id: 'italicBtn',
       text: <>이탤릭체</>,
-      content: '*텍스트*',
+      content: '_텍스트_',
       changeLine: false,
       selection: [1, 4],
     },
@@ -89,9 +89,9 @@ const Nav = () => {
     {
       id: 'separatorBtn',
       text: <>가로줄</>,
-      content: '***',
+      content: '- - -',
       changeLine: true,
-      selection: [4, 4],
+      selection: [6, 6],
     },
   ];
   const btnList = [];
