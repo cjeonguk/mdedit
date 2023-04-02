@@ -18,6 +18,7 @@ const MdText = () => {
               border: 'none',
               borderRight: '1px solid lightgray',
             }}
+            spellCheck={false}
             id="tArea"
             onChange={(event) => {
               document.getElementById('mdDisplay').innerHTML = mdToHtml(
