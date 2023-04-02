@@ -1,4 +1,4 @@
-const { app, BrowserWindow, Menu, dialog, ipcMain } = require('electron');
+const { app, BrowserWindow, Menu, dialog /*, ipcMain*/ } = require('electron');
 const path = require('path');
 
 let mainWindow;
@@ -45,8 +45,12 @@ const createWindow = () => {
       submenu: [
         {
           label: '열기',
+          accelerator: isMac ? 'Cmd+O' : 'Control+O',
           click: () => {
-            const tmpPaths = dialog.showOpenDialogSync({ filters: filters });
+            const tmpPaths = dialog.showOpenDialogSync({
+              filters: filters,
+              properties: ['openFile'],
+            });
             if (typeof tmpPaths !== 'undefined') {
               if (tmpPaths.length == 1) {
                 filePath = tmpPaths[0];
@@ -57,12 +61,15 @@ const createWindow = () => {
             }
           },
         },
-        { type: 'separator' },
+        // { type: 'separator' },
         {
           label: '저장',
+          accelerator: isMac ? 'Cmd+S' : 'Control+S',
           click: () => {
             if (typeof filePath === 'undefined') {
-              const tmpPath = dialog.showSaveDialogSync({ filters: filters });
+              const tmpPath = dialog.showSaveDialogSync({
+                filters: filters,
+              });
               if (typeof tmpPath !== 'undefined') {
                 filePath = tmpPath;
                 mainWindow.webContents.send('saveFile', filePath);
@@ -74,6 +81,7 @@ const createWindow = () => {
         },
         {
           label: '다른 이름으로 저장',
+          accelerator: isMac ? 'Cmd+Shift+S' : 'Control+Shift+S',
           click: () => {
             const tmpPath = dialog.showSaveDialogSync({ filters: filters });
             if (typeof tmpPath !== 'undefined') {
@@ -105,17 +113,17 @@ app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') app.quit();
 });
 
-ipcMain.on('openImage', (event) => {
-  const filters = [
-    { name: 'Image', extensions: ['png', 'jpg', 'jpeg'] },
-    { name: 'All files', extensions: ['*'] },
-  ];
-  const image = dialog.showOpenDialogSync({ filters: filters });
-  if (typeof image === 'undefined') event.returnValue = '';
-  else if (image[0].indexOf(' ') !== -1) {
-    dialog.showErrorBox('Error', '이미지 경로에 공백이 존재해서는 안됩니다!');
-    event.returnValue = '';
-  } else {
-    event.returnValue = image;
-  }
-});
+// ipcMain.on('openImage', (event) => {
+//   const filters = [
+//     { name: 'Image', extensions: ['png', 'jpg', 'jpeg'] },
+//     { name: 'All files', extensions: ['*'] },
+//   ];
+//   const image = dialog.showOpenDialogSync({ filters: filters });
+//   if (typeof image === 'undefined') event.returnValue = '';
+//   else if (image[0].indexOf(' ') !== -1) {
+//     dialog.showErrorBox('Error', '이미지 경로에 공백이 존재해서는 안됩니다!');
+//     event.returnValue = '';
+//   } else {
+//     event.returnValue = image;
+//   }
+// });

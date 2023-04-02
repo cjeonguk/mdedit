@@ -1,8 +1,7 @@
-code {
+code,
+pre {
   background-color: lightgray;
-}
-
-p code {
+  color: black;
   border-radius: 5px;
 }
 

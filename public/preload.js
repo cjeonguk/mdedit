@@ -1,4 +1,4 @@
-const { contextBridge, ipcRenderer } = require('electron');
+const { /*contextBridge,*/ ipcRenderer } = require('electron');
 const fs = require('fs');
 
 ipcRenderer.on('saveFile', (event, filePath) => {
@@ -14,12 +14,12 @@ ipcRenderer.on('openFile', (event, filePath) => {
     .dispatchEvent(new Event('change', { bubbles: true }));
 });
 
-contextBridge.exposeInMainWorld('ipcRenderer', {
-  openImage: () => {
-    const imgPath = ipcRenderer.sendSync('openImage');
-    for (let i in imgPath) {
-      imgPath[i] = imgPath[i].replaceAll('\\', '/');
-    }
-    return imgPath;
-  },
-});
+// contextBridge.exposeInMainWorld('ipcRenderer', {
+//   openImage: () => {
+//     const imgPath = ipcRenderer.sendSync('openImage');
+//     for (let i in imgPath) {
+//       imgPath[i] = imgPath[i].replaceAll('\\', '/');
+//     }
+//     return imgPath;
+//   },
+// });
