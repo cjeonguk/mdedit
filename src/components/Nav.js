@@ -46,7 +46,7 @@ const Nav = () => {
     {
       id: 'italicBtn',
       text: <>이탤릭체</>,
-      content: '_텍스트_',
+      content: '*텍스트*',
       changeLine: false,
       selection: [1, 4],
     },
