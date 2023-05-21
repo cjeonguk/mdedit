@@ -5,3 +5,6 @@ $ yarn install
 $ yarn build
 $ yarn make
 ```
+
+---
+[Demo video link](https://youtu.be/TcpGRWoLcr4)
